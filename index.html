@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Selection Test Site</title>
+    <style>
+        /* ==================== GENERAL STYLING ==================== */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #0056b3;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+        h2 {
+            border-bottom: 2px solid #ccc;
+        }
+
+        /* Container styling */
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        /* Output section styling (Generic) */
+        .output-section {
+            margin-top: 10px;
+            padding: 5px 0;
+        }
+        .output-section p {
+            font-weight: bold;
+            color: #0056b3;
+            margin: 0;
+        }
+        .output-value {
+            color: green;
+            font-size: 1.1em;
+            word-wrap: break-word;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        /* ==================== BUTTONS ==================== */
+        button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* ==================== RADIO BUTTONS ==================== */
+        .radio-group label {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .radio-group input[type="radio"] {
+            margin-right: 5px;
+        }
+        /* Style for disabled element label */
+        input:disabled + label {
+            color: #999;
+            cursor: not-allowed;
+        }
+       
+
+        /* ==================== CHECKBOX TREE ==================== */
+        .tree-view ul {
+            list-style: none;
+            padding-left: 20px;
+            margin: 0;
+        }
+        .tree-view > ul {
+            padding-left: 0;
+        }
+        .tree-view li {
+            margin-bottom: 5px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .tree-view label {
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .tree-view input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        /* Icons for tree view */
+        .tree-view li.folder::before {
+            content: '📁';
+            margin-right: 5px;
+        }
+        .tree-view li.file::before {
+            content: '📄';
+            margin-right: 5px;
+        }
+        .tree-view li.top-level::before {
+            content: '🏠';
+        }
+        
+        .tree-view .toggle-arrow {
+            cursor: pointer;
+            margin-right: 5px;
+            display: inline-block;
+            width: 15px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+		.tree-view .toggle-arrow.collapsed::before {
+            content: '▸';
+        }
+        .tree-view .toggle-arrow.expanded::before {
+            content: '▾';
+        }
+        
+        
+        /* ==================== SINGLE CHECKBOX DEMO ==================== */
+        .success-message {
+            font-weight: bold;
+            color: #28a745; 
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Complete Interactive Test Site</h1>
+    <p>This page demonstrates various Radio Button and Checkbox functionalities.</p>
+
+    <div class="container">
+        <div>
+            <h3>Radio Button Demo</h3>
+        </div>
+        <p>Click on button to get the selected value</p>
+        <div class="radio-group" id="radio-group-single">
+            <input type="radio" id="male-single" name="gender-single" value="Male" onchange="updateSingleRadioOutput()">
+            <label for="male-single">Male</label>
+
+            <input type="radio" id="female-single" name="gender-single" value="Female" onchange="updateSingleRadioOutput()">
+            <label for="female-single">Female</label>
+        </div>
+        
+        <div class="output-section hidden" id="single-radio-output-container">
+            <span id="single-radio-output" class="output-value">Radio button 'Male' is checked</span>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <div>
+            <h3>Group Radio Buttons Demo</h3>
+        </div>
+        <p>Click on button to get the selected values from Group Sex and Age group</p>
+        
+        <p><strong>Sex :</strong></p>
+        <div class="radio-group" id="radio-group-sex">
+            <input type="radio" id="sex-male" name="sex-group" value="Male" onchange="updateGroupRadioOutput()">
+            <label for="sex-male">Male</label>
+            <input type="radio" id="sex-female" name="sex-group" value="Female" onchange="updateGroupRadioOutput()">
+            <label for="sex-female">Female</label>
+        </div>
+        
+        <p><strong>Age Group :</strong></p>
+        <div class="radio-group" id="radio-group-age">
+            <input type="radio" id="age-0-5" name="age-group" value="0 - 5" onchange="updateGroupRadioOutput()">
+            <label for="age-0-5">0 to 5</label>
+            <input type="radio" id="age-5-15" name="age-group" value="5 - 15" onchange="updateGroupRadioOutput()">
+            <label for="age-5-15">5 to 15</label>
+            <input type="radio" id="age-15-50" name="age-group" value="15 - 50" onchange="updateGroupRadioOutput()">
+            <label for="age-15-50">15 to 50</label>
+        </div>
+        
+        
+        
+        <div class="output-section hidden" id="group-radio-output-container"> <div id="group-radio-output">
+                <p>Sex : <span id="group-sex-output" class="output-value"></span></p>
+                <p>Age group: <span id="group-age-output" class="output-value"></span></p>
+            </div>
+        </div>
+    </div>
+    
+    <hr>
+
+    <div class="container">
+        <h2>Like Site? (Live Output)</h2>
+        <div class="radio-group">
+            <p>Do you like the site?</p>
+            <input type="radio" id="radio-yes" name="site-like" value="Yes" checked>
+            <label for="radio-yes">Yes</label>
+
+            <input type="radio" id="radio-impressive" name="site-like" value="Impressive">
+            <label for="radio-impressive">Impressive</label>
+
+            <input type="radio" id="radio-no" name="site-like" value="No" disabled>
+            <label for="radio-no">No</label>
+        </div>
+        <div class="output-section">
+            <p>You have selected:</p>
+            <span id="site-like-output" class="output-value">Yes</span>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <div>
+            <h3>Single Checkbox Demo</h3>
+        </div>
+
+        <p>Clicking on the primary checkbox will display a success message.</p>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="check-primary">
+            <label for="check-primary">Click on this check box</label>
+
+            <input type="checkbox" id="check-default-checked" checked>
+            <label for="check-default-checked">Default Checked</label>
+
+            <input type="checkbox" id="check-default-disabled" disabled>
+            <label for="check-default-disabled">Default Disabled</label>
+        </div>
+
+        <div id="single-checkbox-message" class="success-message hidden">
+            Success - Check box is checked
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <h2>Multilevel Checkbox Test (File Structure)</h2>
+        <div class="tree-view">
+            <ul>
+                <li class="folder top-level">
+                    <span class="toggle-arrow collapsed"></span>
+                    <input type="checkbox" id="check-home" value="Home">
+                    <label for="check-home">Home</label>
+                    <ul class="hidden">
+                        <li class="folder">
+                            <span class="toggle-arrow collapsed"></span>
+                            <input type="checkbox" id="check-desktop" value="Desktop">
+                            <label for="check-desktop">Desktop</label>
+                            <ul class="hidden">
+                                <li class="folder">
+                                    <input type="checkbox" id="check-notes" value="Notes">
+                                    <label for="check-notes">Notes</label>
+                                </li>
+                                <li class="folder">
+                                    <input type="checkbox" id="check-commands" value="Commands">
+                                    <label for="check-commands">Commands</label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="folder">
+                            <span class="toggle-arrow collapsed"></span>
+                            <input type="checkbox" id="check-documents" value="Documents">
+                            <label for="check-documents">Documents</label>
+                            <ul class="hidden">
+                                <li class="folder">
+                                    <input type="checkbox" id="check-workspace" value="WorkSpace">
+                                    <label for="check-workspace">WorkSpace</label>
+                                </li>
+                                <li class="folder">
+                                    <input type="checkbox" id="check-office" value="Office">
+                                    <label for="check-office">Office</label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="folder">
+                            <span class="toggle-arrow collapsed"></span>
+                            <input type="checkbox" id="check-downloads" value="Downloads">
+                            <label for="check-downloads">Downloads</label>
+                            <ul class="hidden">
+                                <li class="file">
+                                    <input type="checkbox" id="check-wordfile" value="Word File.doc">
+                                    <label for="check-wordfile">Word File.doc</label>
+                                </li>
+                                <li class="file">
+                                    <input type="checkbox" id="check-excelfile" value="Excel File.doc">
+                                    <label for="check-excelfile">Excel File.doc</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="output-section">
+            <p>You have selected:</p>
+            <span id="checkbox-output" class="output-value"></span>
+        </div>
+    </div>
+
+    <script>
+        // =========================================================
+        //                 1. Single Radio Button Demo Logic
+        // =========================================================
+        const singleRadioBtn = document.getElementById('get-single-radio-value');
+        const singleRadioOutput = document.getElementById('single-radio-output');
+        const singleRadioGroup = document.querySelectorAll('input[name="gender-single"]');
+		const singleRadioOutputContainer = document.getElementById('single-radio-output-container');
+		
+        function updateSingleRadioOutput() {
+            let selectedValue = 'None is checked';
+			let anySelected = false;
+            singleRadioGroup.forEach(radio => {
+                if (radio.checked) {
+					anySelected = true;
+                    selectedValue = `Radio button '${radio.value}' is checked`;
+                }
+            });
+			
+            singleRadioOutput.textContent = selectedValue;
+			
+			if (anySelected) {
+                singleRadioOutputContainer.classList.remove('hidden');
+            } else {
+                singleRadioOutputContainer.classList.add('hidden');
+            }
+        }
+        
+        
+        updateSingleRadioOutput(); // Initial update
+
+
+        // =========================================================
+        //                 2. Group Radio Buttons Demo Logic (UPDATED)
+        // =========================================================
+        const getGroupRadioValuesBtn = document.getElementById('get-group-radio-value');
+        const groupRadioOutputContainer = document.getElementById('group-radio-output-container');
+        const groupSexOutput = document.getElementById('group-sex-output');
+        const groupAgeOutput = document.getElementById('group-age-output');
+
+        function updateGroupRadioOutput() {
+            let sexValue = '';
+            let ageValue = '';
+            let anySelected = false; // Flag to check if anything is selected
+
+            // Get Sex value
+            document.querySelectorAll('input[name="sex-group"]').forEach(radio => {
+                if (radio.checked) {
+                    sexValue = radio.value;
+                    anySelected = true;
+                }
+            });
+
+            // Get Age value
+            document.querySelectorAll('input[name="age-group"]').forEach(radio => {
+                if (radio.checked) {
+                    ageValue = radio.value;
+                    anySelected = true;
+                }
+            });
+
+            groupSexOutput.textContent = sexValue === '' ? 'N/A' : sexValue; // Display N/A if not selected
+            groupAgeOutput.textContent = ageValue === '' ? 'N/A' : ageValue; // Display N/A if not selected
+
+            if (anySelected) {
+                groupRadioOutputContainer.classList.remove('hidden');
+            } else {
+                groupRadioOutputContainer.classList.add('hidden');
+            }
+        }
+
+
+        // Initial update to ensure hidden state if nothing is selected by default
+        updateGroupRadioOutput();
+
+
+        // =========================================================
+        //                 3. Like Site Radio Button Logic (Live Update)
+        // =========================================================
+        const siteLikeButtons = document.querySelectorAll('input[name="site-like"]');
+        const siteLikeOutput = document.getElementById('site-like-output');
+
+        function updateSiteLikeOutput() {
+            siteLikeButtons.forEach(radio => {
+                if (radio.checked) {
+                    siteLikeOutput.textContent = radio.value;
+                }
+            });
+        }
+
+        siteLikeButtons.forEach(radio => {
+            if (!radio.disabled) {
+                radio.addEventListener('change', updateSiteLikeOutput);
+            }
+        });
+        updateSiteLikeOutput();
+
+
+        // =========================================================
+        //                 4. Single Checkbox Demo Logic
+        // =========================================================
+        const primarySingleCheckbox = document.getElementById('check-primary');
+        const singleCheckboxMessage = document.getElementById('single-checkbox-message');
+
+        primarySingleCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                singleCheckboxMessage.classList.remove('hidden');
+            } else {
+                singleCheckboxMessage.classList.add('hidden');
+            }
+        });
+
+
+        // =========================================================
+        //                 5. Checkbox Tree Logic
+        // =========================================================
+        const treeCheckboxes = document.querySelectorAll('.tree-view input[type="checkbox"]');
+        const checkboxOutput = document.getElementById('checkbox-output');
+
+        function updateCheckboxOutput() {
+            let selectedValues = [];
+            treeCheckboxes.forEach(checkbox => {
+                if (checkbox.checked && !checkbox.indeterminate) { 
+                    selectedValues.push(checkbox.value);
+                }
+            });
+            checkboxOutput.textContent = selectedValues.length > 0 ? selectedValues.join(' ') : '';
+        }
+
+        function setChildrenChecked(parentCheckbox, isChecked) {
+            const childList = parentCheckbox.parentElement.querySelector('ul');
+            if (childList) {
+                const childrenCheckboxes = childList.querySelectorAll('input[type="checkbox"]');
+                childrenCheckboxes.forEach(child => {
+                    child.checked = isChecked;
+                    child.indeterminate = false;
+                    setChildrenChecked(child, isChecked);
+                });
+            }
+        }
+
+        function updateParentCheckedState(childCheckbox) {
+            let currentUL = childCheckbox.closest('ul');
+            if (!currentUL) return;
+
+            let parentLI = currentUL.parentElement;
+            let parentCheckbox = parentLI.querySelector(':scope > input[type="checkbox"]');
+            if (!parentCheckbox) return;
+            
+            const siblingsCheckboxes = currentUL.querySelectorAll(':scope > li > input[type="checkbox"]');
+            let allChildrenChecked = true;
+            let anyChildChecked = false;
+
+            siblingsCheckboxes.forEach(sibling => {
+                if (!sibling.checked || sibling.indeterminate) {
+                    allChildrenChecked = false;
+                }
+                if (sibling.checked || sibling.indeterminate) {
+                    anyChildChecked = true;
+                }
+            });
+
+            if (allChildrenChecked) {
+                parentCheckbox.checked = true;
+                parentCheckbox.indeterminate = false;
+            } else if (anyChildChecked) {
+                parentCheckbox.checked = false;
+                parentCheckbox.indeterminate = true;
+            } else {
+                parentCheckbox.checked = false;
+                parentCheckbox.indeterminate = false;
+            }
+            updateParentCheckedState(parentCheckbox);
+        }
+
+        treeCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                setChildrenChecked(this, this.checked);
+                updateParentCheckedState(this);
+                updateCheckboxOutput();
+            });
+        });
+
+        // --- Initialize Checkbox Tree to match previous requests (Notes and Commands checked) ---
+       /* const desktop = document.getElementById('check-desktop');
+        const notes = document.getElementById('check-notes');
+        const commands = document.getElementById('check-commands');
+        
+        notes.checked = true;
+        commands.checked = true;
+        
+        // Propagate initial state upwards
+        updateParentCheckedState(notes);
+        updateParentCheckedState(commands);
+        
+        // Update the final output display
+        updateCheckboxOutput();
+		*/
+        // --- Toggle Arrow (Expand/Collapse) Logic ---
+        document.querySelectorAll('.toggle-arrow').forEach(arrow => {
+            arrow.addEventListener('click', function() {
+                const parentLi = this.closest('li');
+                const childUl = parentLi.querySelector(':scope > ul');
+                if (childUl) {
+                    childUl.classList.toggle('hidden');
+					this.classList.toggle('collapsed');
+                    this.classList.toggle('expanded');
+                    
+                }
+            });
+        });
+        
+    </script>
+</body>
+</html>
