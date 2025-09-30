@@ -169,14 +169,14 @@
         <div>
             <h3>Group Radio Buttons Demo</h3>
         </div>
-        <p>Click on button to get the selected values from Group Sex and Age group</p>
+        <p>Click on button to get the selected values from Group gender and Age group</p>
         
-        <p><strong>Sex :</strong></p>
-        <div class="radio-group" id="radio-group-sex">
-            <input type="radio" id="sex-male" name="sex-group" value="Male" onchange="updateGroupRadioOutput()">
-            <label for="sex-male">Male</label>
-            <input type="radio" id="sex-female" name="sex-group" value="Female" onchange="updateGroupRadioOutput()">
-            <label for="sex-female">Female</label>
+        <p><strong>gender :</strong></p>
+        <div class="radio-group" id="radio-group-gender">
+            <input type="radio" id="gender-male" name="gender-group" value="Male" onchange="updateGroupRadioOutput()">
+            <label for="gender-male">Male</label>
+            <input type="radio" id="gender-female" name="gender-group" value="Female" onchange="updateGroupRadioOutput()">
+            <label for="gender-female">Female</label>
         </div>
         
         <p><strong>Age Group :</strong></p>
@@ -192,7 +192,7 @@
         
         
         <div class="output-section hidden" id="group-radio-output-container"> <div id="group-radio-output">
-                <p>Sex : <span id="group-sex-output" class="output-value"></span></p>
+                <p>gender : <span id="group-gender-output" class="output-value"></span></p>
                 <p>Age group: <span id="group-age-output" class="output-value"></span></p>
             </div>
         </div>
@@ -347,18 +347,18 @@
         // =========================================================
         const getGroupRadioValuesBtn = document.getElementById('get-group-radio-value');
         const groupRadioOutputContainer = document.getElementById('group-radio-output-container');
-        const groupSexOutput = document.getElementById('group-sex-output');
+        const groupgenderOutput = document.getElementById('group-gender-output');
         const groupAgeOutput = document.getElementById('group-age-output');
 
         function updateGroupRadioOutput() {
-            let sexValue = '';
+            let genderValue = '';
             let ageValue = '';
             let anySelected = false; // Flag to check if anything is selected
 
-            // Get Sex value
-            document.querySelectorAll('input[name="sex-group"]').forEach(radio => {
+            // Get gender value
+            document.querySelectorAll('input[name="gender-group"]').forEach(radio => {
                 if (radio.checked) {
-                    sexValue = radio.value;
+                    genderValue = radio.value;
                     anySelected = true;
                 }
             });
@@ -371,7 +371,7 @@
                 }
             });
 
-            groupSexOutput.textContent = sexValue === '' ? 'N/A' : sexValue; // Display N/A if not selected
+            groupgenderOutput.textContent = genderValue === '' ? 'N/A' : genderValue; // Display N/A if not selected
             groupAgeOutput.textContent = ageValue === '' ? 'N/A' : ageValue; // Display N/A if not selected
 
             if (anySelected) {
